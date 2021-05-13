@@ -3,15 +3,17 @@ import datetime as dt
 import backtrader as bt
 from backtrader import cerebro
 from strategies.TestStrategy import TestStrategy
+from strategies.BuyHold import BuyHold
 
 # Constants
-STARTING_CASH = 10000.00
+STARTING_CASH = 10_000.00
 STARTING_DATE = dt.datetime(2020, 1, 1)
 ENDING_DATE = dt.date(2021, 12, 31)
 
 # Strategy Dictionary
 strategies = {
-    "test_strategy": TestStrategy
+    "test_strategy": TestStrategy,
+    "buy_hold": BuyHold
 }
 
 # Argument Parser (CMD)

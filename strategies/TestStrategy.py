@@ -28,7 +28,7 @@ class TestStrategy(bt.Strategy):
             if order.isbuy():
                 self.log("BUY EXECUTED {}".format(order.executed.price))
             elif order.issell():
-                self.log("BUY EXECUTED {}".format(order.executed.price))
+                self.log("SELL EXECUTED {}".format(order.executed.price))
             
             self.bar_executed = len(self)
 
