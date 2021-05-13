@@ -14,6 +14,15 @@ strategies = {
     "test_strategy": TestStrategy
 }
 
+# Argument Parser (CMD)
+parser = argparse.ArgumentParser()
+parser.add_argument("strategy", help="which trading strategy to use", type=str)
+args = parser.parse_args()
+
+if not args.strategy in strategies:
+    print("invalid strategy, must be one of {}".format(strategies.keys()))
+    sys.exit(0)
+
 # Yahoo Data Feed
 data = bt.feeds.YahooFinanceCSVData(
     dataname = ("data/AAPL.csv"),
@@ -30,7 +39,7 @@ data = bt.feeds.YahooFinanceCSVData(
 cerebro = bt.Cerebro()
 cerebro.broker.set_cash(STARTING_CASH)
 cerebro.adddata(data)
-cerebro.addstrategy() # arg parser to go in here
+cerebro.addstrategy(strategies[args.strategy]) # arg parser to go in here
 cerebro.run()
 
 # Final Output
