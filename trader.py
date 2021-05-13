@@ -2,16 +2,26 @@ import os, sys, argparse
 import datetime as dt
 import backtrader as bt
 from backtrader import cerebro
+from strategies.TestStrategy import TestStrategy
 
 # Constants
 STARTING_CASH = 10000.00
+STARTING_DATE = dt.datetime(2020, 1, 1)
+ENDING_DATE = dt.date(2021, 12, 31)
+
+# Strategy Dictionary
+strategies = {
+    "test_strategy": TestStrategy
+}
 
 # Yahoo Data Feed
 data = bt.feeds.YahooFinanceCSVData(
     dataname = ("data/AAPL.csv"),
+
     # Range of data being used
-    fromdate = dt.datetime(2015, 1, 1), # Starting Date of Data Feed
-    todate = dt.datetime(2021, 12, 31), # Ending Date of Data Feed
+    fromdate = STARTING_DATE, # Starting Date of Data Feed
+    todate = ENDING_DATE, # Ending Date of Data Feed
+
     # Yahoo's head() of data is the oldest
     reverse = False
 )
