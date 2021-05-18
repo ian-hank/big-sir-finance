@@ -4,16 +4,18 @@ import backtrader as bt
 from backtrader import cerebro
 from strategies.TestStrategy import TestStrategy
 from strategies.BuyHold import BuyHold
+from strategies.GoldenCross import GoldenCross
 
 # Constants
 STARTING_CASH = 10_000.00
-STARTING_DATE = dt.datetime(2020, 1, 1)
+STARTING_DATE = dt.datetime(2018, 1, 1)
 ENDING_DATE = dt.date(2021, 12, 31)
 
 # Strategy Dictionary
 strategies = {
     "test_strategy": TestStrategy,
-    "buy_hold": BuyHold
+    "buy_hold": BuyHold,
+    "golden_cross": GoldenCross
 }
 
 # Argument Parser (CMD)
@@ -53,7 +55,7 @@ formatted_gain_pct = "{:.2f}".format(gain_pct)
 
 print("\nStarting Portfolio Value: $%.2f" % STARTING_CASH)
 print("Ending Portfolio Value:   $%.2f" % cerebro.broker.getvalue())
-print("Gain/Loss($): $" + str(formatted_gain_dollar))
-print("Gain/Loss(%): " + str(formatted_gain_pct) + "%")
+print("\nGain/Loss ($): $" + str(formatted_gain_dollar))
+print("Gain/Loss (%): " + str(formatted_gain_pct) + "%")
 
 cerebro.plot()
